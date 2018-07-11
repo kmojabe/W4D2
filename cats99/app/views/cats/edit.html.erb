@@ -1,0 +1,58 @@
+<form action="<%= cat_url(@cat) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <table>
+    <thead>
+      <tr>
+        <th colspan="2" align="center">New Cat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+
+        <td>Name: </td>
+        <td>
+          <input id="name"
+          type="text"
+          name="cat[name]"
+          value="<%= @cat.name %>">
+        </td>
+      </tr>
+      <tr>
+        <td>Birthday: </td>
+        <td><input id="birthday"
+          type="date"
+          name="cat[birth_date]"
+          value="<%= @cat.birth_date %>">
+        </td>
+      </tr>
+      <tr>
+        <td>Color: </td>
+        <td><select id="color" name="cat[color]">
+          <option disabled "<% @cat.color.nil? ? 'selected' : ''%> ">Select a color</option>
+          <% Cat::COLORS.each do |color| %>
+          <option value="<%= color %>" "<% color==@cat.color ? 'selected' : ''%>"><%= color %></option>
+          <% end %>
+        </select></td>
+      </td>
+    </tr>
+    <tr>
+      <td>Sex: </td>
+      <td>
+        <input id="M" type="radio" name="cat[sex]" "<%= @cat.sex == 'M' ? 'checked' : '' %>">
+        <label for="M">M</label>
+        <input id="F" type="radio" name="cat[sex]" "<%= @cat.sex == 'F' ? 'checked' : '' %>">
+        <label for="F">F</label>
+      </td>
+    </tr>
+    <tr>
+      <td>Description: </td>
+      <td><textarea id="description" name="cat[description]"><%=@cat.description%></textarea>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td><input type="submit" value="Create Cat"></td>
+    </tr>
+  </tfoot>
+</table>
